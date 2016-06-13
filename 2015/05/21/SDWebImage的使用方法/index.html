@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="我得眼里只有代码">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="伟绅">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="SDWebImage的使用方法"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="我得眼里只有代码" />
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="伟绅的技术博客"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="http://yoursite.comundefined"/>
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>SDWebImage的使用方法 - 伟绅的技术博客</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Configurable Title</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>SDWebImage的使用方法</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2015-05-21
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><span>第一步，下载SDWebImage，导入工程。github托管地址<a href="https://github.com/rs/SDWebImage" target="_blank" rel="external">https://github.com/rs/SDWebImage</a></span></p>
+<p>第二步，在需要的地方导入头文件</p>
+<p>1</p>
+<p>#import “UIImageView+WebCache.h”<br>第三步，调用sd_setImageWithURL：方法缓存图片，注意，这就是新版本的新方法，旧方法是setImageWithURL:。下面将几个方法都介绍一下。</p>
+<p>sd_setImageWithURL：<br>//图片缓存的基本代码，就是这么简单<br>[self.image1 sd_setImageWithURL:imagePath1];</p>
+<p>sd_setImageWithURL: completed:<br>//用block 可以在图片加载完成之后做些事情<br>[self.image2 sd_setImageWithURL:imagePath2 completed:^(UIImage image, NSError error, SDImageCacheType cacheType, NSURL *imageURL) {</p>
+<p>NSLog(@”这里可以在图片加载完成之后做些事情”);</p>
+<p>}];</p>
+<p>sd_setImageWithURL: placeholderImage:<br>//给一张默认图片，先使用默认图片，当图片加载完成后再替换<br>[self.image1 sd_setImageWithURL:imagePath1 placeholderImage:[UIImage imageNamed:@”default”]];</p>
+<p>sd_setImageWithURL: placeholderImage: completed:<br>//使用默认图片，而且用block 在完成后做一些事情<br>[self.image1 sd_setImageWithURL:imagePath1 placeholderImage:[UIImage imageNamed:@”default”] completed:^(UIImage image, NSError error, SDImageCacheType cacheType, NSURL *imageURL) {</p>
+<p>NSLog(@”图片加载完成后做的事情”);</p>
+<p>}];</p>
+<p>sd_setImageWithURL: placeholderImage: options:<br>//options 选择方式</p>
+<p>[self.image1 sd_setImageWithURL:imagePath1 placeholderImage:[UIImage imageNamed:@”default”] options:SDWebImageRetryFailed];<br>其他就不一一介绍了，oc是自文档语言，看方法名就知道干什么的了。除了带options选项的方法，其他的方法都是综合存储，也就是内存缓存和磁盘缓存结合的方式，如果你只需要内存缓存，那么在options这里选择SDWebImageCacheMemoryOnly就可以了。</p>
+<p>如果不想深入了解，到这里你已经可以用SDWebimage进行图片缓存了，接下来我要解释options的所有选项，以及SDWebImage内部执行流程。</p>
+<p>一、options所有选项：</p>
+<p>　　//失败后重试<br>SDWebImageRetryFailed = 1 &lt;&lt; 0,</p>
+<p>//UI交互期间开始下载，导致延迟下载比如UIScrollView减速。<br>SDWebImageLowPriority = 1 &lt;&lt; 1,</p>
+<p>//只进行内存缓存<br>SDWebImageCacheMemoryOnly = 1 &lt;&lt; 2,</p>
+<p>//这个标志可以渐进式下载,显示的图像是逐步在下载<br>SDWebImageProgressiveDownload = 1 &lt;&lt; 3,</p>
+<p>//刷新缓存<br>SDWebImageRefreshCached = 1 &lt;&lt; 4,</p>
+<p>//后台下载<br>SDWebImageContinueInBackground = 1 &lt;&lt; 5,</p>
+<p>//NSMutableURLRequest.HTTPShouldHandleCookies = YES;</p>
+<p>SDWebImageHandleCookies = 1 &lt;&lt; 6,</p>
+<p>//允许使用无效的SSL证书<br>//SDWebImageAllowInvalidSSLCertificates = 1 &lt;&lt; 7,</p>
+<p>//优先下载<br>SDWebImageHighPriority = 1 &lt;&lt; 8,</p>
+<p>//延迟占位符<br>SDWebImageDelayPlaceholder = 1 &lt;&lt; 9,</p>
+<p>//改变动画形象<br>SDWebImageTransformAnimatedImage = 1 &lt;&lt; 10,<br>二、SDWebImage内部实现过程</p>
+<p>入口 setImageWithURL:placeholderImage:options: 会先把 placeholderImage 显示，然后 SDWebImageManager 根据 URL 开始处理图片。<br>进入 SDWebImageManager-downloadWithURL:delegate:options:userInfo:，交给 SDImageCache 从缓存查找图片是否已经下载 queryDiskCacheForKey:delegate:userInfo:.<br>先从内存图片缓存查找是否有图片，如果内存中已经有图片缓存，SDImageCacheDelegate 回调 imageCache:didFindImage:forKey:userInfo: 到 SDWebImageManager。<br>SDWebImageManagerDelegate 回调 webImageManager:didFinishWithImage: 到 UIImageView+WebCache 等前端展示图片。<br>如果内存缓存中没有，生成 NSInvocationOperation 添加到队列开始从硬盘查找图片是否已经缓存。<br>根据 URLKey 在硬盘缓存目录下尝试读取图片文件。这一步是在 NSOperation 进行的操作，所以回主线程进行结果回调 notifyDelegate:。<br>如果上一操作从硬盘读取到了图片，将图片添加到内存缓存中（如果空闲内存过小，会先清空内存缓存）。SDImageCacheDelegate 回调 imageCache:didFindImage:forKey:userInfo:。进而回调展示图片。<br>如果从硬盘缓存目录读取不到图片，说明所有缓存都不存在该图片，需要下载图片，回调 imageCache:didNotFindImageForKey:userInfo:。<br>共享或重新生成一个下载器 SDWebImageDownloader 开始下载图片。<br>图片下载由 NSURLConnection 来做，实现相关 delegate 来判断图片下载中、下载完成和下载失败。<br>connection:didReceiveData: 中利用 ImageIO 做了按图片下载进度加载效果。<br>connectionDidFinishLoading: 数据下载完成后交给 SDWebImageDecoder 做图片解码处理。<br>图片解码处理在一个 NSOperationQueue 完成，不会拖慢主线程 UI。如果有需要对下载的图片进行二次处理，最好也在这里完成，效率会好很多。<br>在主线程 notifyDelegateOnMainThreadWithInfo: 宣告解码完成，imageDecoder:didFinishDecodingImage:userInfo: 回调给 SDWebImageDownloader。<br>imageDownloader:didFinishWithImage: 回调给 SDWebImageManager 告知图片下载完成。<br>通知所有的 downloadDelegates 下载完成，回调给需要的地方展示图片。<br>将图片保存到 SDImageCache 中，内存缓存和硬盘缓存同时保存。写文件到硬盘也在以单独 NSInvocationOperation 完成，避免拖慢主线程。<br>SDImageCache 在初始化的时候会注册一些消息通知，在内存警告或退到后台的时候清理内存图片缓存，应用结束的时候清理过期图片。<br>SDWI 也提供了 UIButton+WebCache 和 MKAnnotationView+WebCache，方便使用。<br>SDWebImagePrefetcher 可以预先下载图片，方便后续使用。<br>从上面流程可以看出，当你调用setImageWithURL:方法的时候，他会自动去给你干这么多事，当你需要在某一具体时刻做事情的时候，你可以覆盖这些方法。比如在下载某个图片的过程中要响应一个事件，就覆盖这个方法：</p>
+<p>//覆盖方法，指哪打哪，这个方法是下载imagePath2的时候响应<br>SDWebImageManager *manager = [SDWebImageManager sharedManager];</p>
+<p>[manager downloadImageWithURL:imagePath2 options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {</p>
+<p>NSLog(@”显示当前进度”);</p>
+<p>} completed:^(UIImage image, NSError error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {</p>
+<p>NSLog(@”下载完成”);<br>}];</p>
+<p></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>
