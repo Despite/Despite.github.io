@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="伟绅的技术博客"/>
+        <meta property="og:title" content="runtime机制"/>
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -46,7 +46,7 @@
 
     <!-- Title -->
     
-    <title>Archiv - 伟绅的技术博客</title>
+    <title>runtime机制 - 伟绅的技术博客</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
@@ -128,63 +128,64 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Archiv</h1>
+                <div class="post-heading">
+                    <h1>runtime机制</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2013-06-13
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2016/05/20/hello-world/">
-        <h1 class="post-title archive">
-            Hello World
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2016-05-20
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><span>Runtime是一套底层的C语言API（包含强大的C语言数据类型和函数）<br>OC代码都是基于Runtime实现的，即编写的OC代码最终都会转成Runtime的代码，例如：<br>HCPerson *person = [HCPerson alloc] init];<br>[person setAge:10]; //这句会转换成objc_msgSend(person,@selector(setAge:),20);<br>Runtime的作用<br>获取类的私有变量</span></p>
+<p>#import<br>// Ivar : 成员变量<br>unsigned int count = 0;<br>// 获得所有的成员变量<br>Ivar ivars = class_copyIvarList([HCPerson class], &amp;count);<br>for (int i = 0; i&lt;count; i++) {<br>// 取得i位置的成员变量<br>Ivar ivar = ivars[i];<br>const char name = ivar_getName(ivar);<br>const char *type = ivar_getTypeEncoding(ivar);<br>NSLog(@”%d %s %s”, i, name, type);</p>
+<p>}<br>动态产生类，成员变量和方法<br>动态修改类，成员变量和方法<br>对换两个方法的实现（swizzle）</p>
+<p>例如：如果想要对iOS7以上和iOS7以下的图片进行适配，不同系统版本显示不同的图片，则可利用swizzle来实现<br>实现方法：<br>1.自定义UIImage的类imageWithName：方法，在该方法内进行系统版本号的判断，来显示不同的图片<br>2.将imageWithName:方法和系统的imageNamed:方法进行对换，这样，一旦调用系统的imageNamed:方法，便会执行自定义的imageWithName:方法，进行判断，显示不同的图片<br>/**</p>
+<p>只要分类被装载到内存中，就会调用1次<br>*/<br>(void)load<br>{<br>//获取类方法<br>Method otherMehtod = class_getClassMethod(self, @selector(imageWithName:));<br>Method originMehtod = class_getClassMethod(self, @selector(imageNamed:));<br>// 交换2个方法的实现<br>method_exchangeImplementations(otherMehtod, originMehtod);<br>}</p>
+<p>(UIImage )imageWithName:(NSString )name<br>{<br>BOOL iOS7 = [[UIDevice currentDevice].systemVersion floatValue] &gt;= 7.0;<br>UIImage image = nil;<br>if (iOS7) {<br>NSString newName = [name stringByAppendingString:@”_os7”];<br>image = [UIImage imageWithName:newName];<br>}</p>
+<p>if (image == nil) {<br>image = [UIImage imageWithName:name];<br>}<br>return image;<br>}</p>
+<p>文／冲破茧缚（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/20a02d17d6fc" target="_blank" rel="external">http://www.jianshu.com/p/20a02d17d6fc</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2013/06/13/iOS多线程总结/">
-        <h1 class="post-title archive">
-            runtime机制
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2013-06-13
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
             
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
